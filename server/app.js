@@ -1,11 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser= require('body-parser');
-const key = process.env.API_KEY;
-const Axios = require('axios');
 require('dotenv').config();
+let keto = process.env.API_KEY;
+const Axios = require('axios');
 
-console.log("line 8"+ key);
+
+console.log("line 8"+ keto);
 //create express server
 const app = express();
 
@@ -25,13 +26,13 @@ app.get("/",(req,res)=>{
     if (result.length === 1)res.status(200).json(result[0]);
     else{
         const path = req.url;
-      /*  // Axios.get(`http://www.omdbapi.com${req.url}&apikey=${key}`).then(
+      Axios.get(`http://www.omdbapi.com${req.url}&apikey=${process.env.API_KEY}`).then(
             (movie)=>{
                 movieData.push(movie.data);
                 res.status(200).json(movie.data);
            }
         );
-        */
+    
     } 
 });
 
